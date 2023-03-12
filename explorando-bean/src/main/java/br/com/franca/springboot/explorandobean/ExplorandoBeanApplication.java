@@ -3,13 +3,15 @@ package br.com.franca.springboot.explorandobean;
 import br.com.franca.springboot.explorandobean.core.usecase.cliente.ClienteService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ExplorandoBeanApplication {
 	@Autowired
-	ClienteService clienteService1;
+	@Qualifier("clienteService1")
+	ClienteService clienteServiceOne;
 	@Autowired
 	ClienteService clienteService2;
 
@@ -19,8 +21,8 @@ public class ExplorandoBeanApplication {
 
 	@PostConstruct
 	public void init(){
-		System.out.println("ClienteService1 = " + clienteService1 +  "( " + clienteService1.getName() + " )");
-		clienteService1.printDependencies();
+		System.out.println("ClienteService1 = " + clienteServiceOne +  "( " + clienteServiceOne.getName() + " )");
+		clienteServiceOne.printDependencies();
 		System.out.println("ClienteService2 = " + clienteService2 +  "( " + clienteService2.getName() + " )");
 		clienteService2.printDependencies();
 	}
