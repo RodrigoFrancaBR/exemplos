@@ -1,6 +1,4 @@
-package br.com.franca.springboot.explorandobean.core.usecase.cliente;
-
-import br.com.franca.springboot.explorandobean.dataprovider.db.ClienteDao;
+package br.com.franca.springboot.explorandospring.core.usecase.cliente;
 
 public interface ClienteService {
 

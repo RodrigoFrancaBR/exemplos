@@ -1,14 +1,16 @@
-package br.com.franca.springboot.explorandobean.config;
+package br.com.franca.springboot.explorandospring.config;
 
-import br.com.franca.springboot.explorandobean.core.usecase.cliente.ClienteService;
-import br.com.franca.springboot.explorandobean.core.usecase.cliente.ClienteServiceImpl;
-import br.com.franca.springboot.explorandobean.dataprovider.db.ClienteDao;
-import br.com.franca.springboot.explorandobean.dataprovider.db.ClienteDaoImpl;
+import br.com.franca.springboot.explorandospring.core.usecase.cliente.ClienteService;
+import br.com.franca.springboot.explorandospring.core.usecase.cliente.ClienteServiceImpl;
+import br.com.franca.springboot.explorandospring.dataprovider.db.ClienteDao;
+import br.com.franca.springboot.explorandospring.dataprovider.db.ClienteDaoImpl;
+import org.slf4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ApplicationConfig {
+
     @Bean
     public ClienteDao clienteDao(){
         return new ClienteDaoImpl();
@@ -29,4 +31,5 @@ public class ApplicationConfig {
         cLienteService.setClientDao(clienteDao);
         return cLienteService;
     }
+
 }

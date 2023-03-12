@@ -1,7 +1,9 @@
-package br.com.franca.springboot.explorandobean;
+package br.com.franca.springboot.explorandospring;
 
-import br.com.franca.springboot.explorandobean.core.usecase.cliente.ClienteService;
+import br.com.franca.springboot.explorandospring.core.usecase.cliente.ClienteService;
 import jakarta.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
@@ -15,15 +17,19 @@ public class ExplorandoBeanApplication {
 	@Autowired
 	ClienteService clienteService2;
 
+	static Logger logger;
+
 	public static void main(String[] args) {
+		logger = LoggerFactory.getLogger("br.com.franca.springboot.explorandospring.ExplorandoBeanApplication");
+		logger.debug("Hello World Logback!!");
 		SpringApplication.run(ExplorandoBeanApplication.class, args);
 	}
 
 	@PostConstruct
 	public void init(){
-		System.out.println("ClienteService1 = " + clienteServiceOne +  "( " + clienteServiceOne.getName() + " )");
+		logger.info("ClienteService1: {} name: {} ", clienteServiceOne, clienteServiceOne.getName());
 		clienteServiceOne.printDependencies();
-		System.out.println("ClienteService2 = " + clienteService2 +  "( " + clienteService2.getName() + " )");
+		logger.info("ClienteService2: {} name: {} ", clienteService2, clienteService2.getName());
 		clienteService2.printDependencies();
 	}
 

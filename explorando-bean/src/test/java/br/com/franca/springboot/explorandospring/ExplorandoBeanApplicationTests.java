@@ -1,4 +1,4 @@
-package br.com.franca.springboot.explorandobean;
+package br.com.franca.springboot.explorandospring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

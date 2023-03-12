@@ -1,9 +1,8 @@
-package br.com.franca.springboot.explorandobean.core.usecase.cliente;
+package br.com.franca.springboot.explorandospring.core.usecase.cliente;
 
-import br.com.franca.springboot.explorandobean.dataprovider.db.ClienteDao;
+import br.com.franca.springboot.explorandospring.dataprovider.db.ClienteDao;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class ClienteServiceImpl implements ClienteService{
     private String name;
