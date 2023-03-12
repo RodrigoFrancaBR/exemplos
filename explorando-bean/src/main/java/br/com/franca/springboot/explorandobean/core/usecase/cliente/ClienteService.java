@@ -9,6 +9,8 @@ public interface ClienteService {
 
     void printDependencies();
 
-    void setClientDao(ClienteDao clientDao);
+    void init();
+
+    void destroy();
 
 }

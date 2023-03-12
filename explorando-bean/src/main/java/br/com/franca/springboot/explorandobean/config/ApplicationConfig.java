@@ -14,7 +14,7 @@ public class ApplicationConfig {
         return new ClienteDaoImpl();
     }
 
-    @Bean
+    @Bean(initMethod = "init", destroyMethod = "destroy")
     public ClienteService clienteService1(final ClienteDao clienteDao){
         ClienteServiceImpl cLienteService = new ClienteServiceImpl();
         cLienteService.setName("Instancia de cliente service 1");
