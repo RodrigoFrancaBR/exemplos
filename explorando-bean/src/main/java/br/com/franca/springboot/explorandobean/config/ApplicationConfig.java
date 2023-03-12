@@ -15,18 +15,18 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public ClienteService clienteService1(){
+    public ClienteService clienteService1(final ClienteDao clienteDao){
         ClienteServiceImpl cLienteService = new ClienteServiceImpl();
         cLienteService.setName("Instancia de cliente service 1");
-        cLienteService.setClientDao(clienteDao());
+        cLienteService.setClientDao(clienteDao);
         return cLienteService;
     }
 
     @Bean
-    public ClienteService clienteService2(){
+    public ClienteService clienteService2(final ClienteDao clienteDao){
         ClienteServiceImpl cLienteService = new ClienteServiceImpl();
         cLienteService.setName("Instancia de cliente service 2");
-        cLienteService.setClientDao(clienteDao());
+        cLienteService.setClientDao(clienteDao);
         return cLienteService;
     }
 }
