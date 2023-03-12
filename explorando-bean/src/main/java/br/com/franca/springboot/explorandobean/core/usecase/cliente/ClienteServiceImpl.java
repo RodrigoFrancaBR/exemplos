@@ -1,6 +1,8 @@
 package br.com.franca.springboot.explorandobean.core.usecase.cliente;
 
 import br.com.franca.springboot.explorandobean.dataprovider.db.ClienteDao;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ClienteServiceImpl implements ClienteService{
@@ -33,11 +35,13 @@ public class ClienteServiceImpl implements ClienteService{
 
 
     @Override
+    @PostConstruct
     public void init() {
         System.out.println("Chamando o método init " + name);
     }
 
     @Override
+    @PreDestroy
     public void destroy() {
         System.out.println("Chamando o método destroy " + name);
     }
