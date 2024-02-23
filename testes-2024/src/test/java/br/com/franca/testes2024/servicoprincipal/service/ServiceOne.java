@@ -38,10 +38,14 @@ public class ServiceOne {
 
         DTOThree dtoThreeV1 = new DTOThree();
         optional.ifPresent(e->{
-            final DTOTwo DTOThreeV2 = serviceMapperOne.methodOne("");
+            final DTOTwo DTOThreeV2 = serviceMapperOne.methodOne(string);
             BeanUtils.copyProperties(DTOThreeV2, dtoThreeV1);
         });
 
         return serviceThree.methodOne(dtoThreeV1);
+    }
+
+    public DTOThree methodThree(DTOOne validDtoOne) {
+        return new DTOThree();
     }
 }

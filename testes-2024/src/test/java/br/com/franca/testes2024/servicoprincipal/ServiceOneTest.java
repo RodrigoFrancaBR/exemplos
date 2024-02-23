@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,14 +29,26 @@ public class ServiceOneTest {
 
     @SneakyThrows
     @Test
+    void methodOne_shouldReturnDataOneOK_whenDataTwoIsOk() {
+        final var validDtoOne = DTOOneHelper.getValidDTOOne();
+        final var validDTOTwo = DTOTwoHelper.getValidDTOTwo();
+        ServiceOneHelper.whenMethodOneIsCalledThenReturnDTOTwoWith(serviceTwo, validDtoOne.getFieldOne(), validDTOTwo);
+        ServiceOneHelper.doNothingWhenMethodThreeIsCalled(serviceTwo, validDTOTwo);
+        ServiceOneHelper.whenMethodFourIsCalledThenReturnValidData(serviceTwo, validDTOTwo);
+        org.assertj.core.api.Assertions.assertThatCode(() -> serviceOne.methodThree(validDtoOne));
+        Mockito.verify(serviceTwo, Mockito.never()).methodFive(Mockito.any(), Mockito.any());
+    }
+
+    @SneakyThrows
+    @Test
     void methodOne_shouldThrowException_whenInvalidFieldTwo() {
         final var dtoOne = DTOOneHelper.getValidDTOOne();
-        final var dtoTwo = DTOTwoHelper.getValidDTOTwo();
+        final var dtoTwoWithInvalidFieldTwo = DTOTwoHelper.getValidDTOTwo();
 
-        ServiceOneHelper.whenMethodOneIsCalledThenReturnDTOTwoWithInvalidFieldTwo(serviceTwo, dtoOne.getFieldOne(), dtoTwo);
+        ServiceOneHelper.whenMethodOneIsCalledThenReturnDTOTwoWith(serviceTwo, dtoOne.getFieldOne(), dtoTwoWithInvalidFieldTwo);
 
         final var ex = new RuntimeException("");
-        ServiceOneHelper.doThrowExceptionWhenMethodThreeIsCalled(serviceTwo, dtoTwo, ex);
+        ServiceOneHelper.doThrowExceptionWhenMethodThreeIsCalled(serviceTwo, dtoTwoWithInvalidFieldTwo, ex);
 
         final var exception = Assertions.assertThrows(RuntimeException.class,
             () -> serviceOne.methodOne(dtoOne), "");

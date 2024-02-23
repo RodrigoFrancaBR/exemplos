@@ -18,4 +18,8 @@ public class DTOTwo {
     public Optional<Map<String, List<String>>> methodOne() {
         return Optional.empty();
     }
+
+    public Optional<Map<String, List<String>>> getFieldThree() {
+        return Optional.of(Map.of("key", List.of("value")));
+    }
 }
